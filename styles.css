@@ -1,0 +1,22 @@
+body{
+    margin: 0;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: #1e1e1e;
+    color:white
+}
+
+#play{
+    margin:20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor:pointer;
+    background: #4caf50;
+    color:white
+
+}
