@@ -14,6 +14,12 @@ lerna-debug.log*
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
+# Archivos de audio
+*.wav
+*.mp3
+*.ogg
+
+
 # Runtime data
 pids
 *.pid
