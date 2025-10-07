@@ -20,3 +20,14 @@ body{
     color:white
 
 }
+
+#stop{
+    margin:20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor:pointer;
+    background: #f44336;
+    color:white
+}

@@ -4,6 +4,8 @@ const path = require('path');
 const player = document.getElementById('player');
 const playBtn = document.getElementById('play');
 const title = document.querySelector('h1');
+const stopBtn = document.getElementById('stop');
+
 
 // Botón Play/Pause
 playBtn.addEventListener('click', () => {
@@ -16,6 +18,12 @@ playBtn.addEventListener('click', () => {
     player.pause();
     playBtn.textContent = 'Play';
   }
+});
+
+stopBtn.addEventListener('click', () => {
+  player.pause();
+  player.currentTime = 0;
+  playBtn.textContent = 'Play';
 });
 
 // Cuando el main envía la ruta del archivo
