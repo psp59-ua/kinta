@@ -5,16 +5,27 @@
     <title>Kinta Player</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <h1>Kinta Player</h1>
 
-    <div>
-        <button id="stop">Stop</button>
-        <button id="play">Play</button>
-    </div>
-   
-    
-    
+<body>
+
+    <header>
+        <h1>Kinta Player</h1>
+    </header>
+
+    <main>
+        <div id="cover-container">
+            <img id="cover" src="default-cover.png" alt="Portada" >
+        </div>
+    </main>
+
+    <footer>
+        <input type="range" id="progress" min="0" max="100" step="0.1">
+        <div class="controls">
+            <button id="stop">Stop</button>
+            <button id="play">Play</button>
+        </div>
+    </footer>
+
     <audio id="player"></audio>
 
     <script src="render.js"></script>

@@ -12,5 +12,8 @@
   "type": "commonjs",
   "devDependencies": {
     "electron": "^28.3.3"
+  },
+  "dependencies": {
+    "music-metadata": "^5.4.3"
   }
 }

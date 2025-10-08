@@ -5,9 +5,15 @@ const player = document.getElementById('player');
 const playBtn = document.getElementById('play');
 const title = document.querySelector('h1');
 const stopBtn = document.getElementById('stop');
+const progress = document.getElementById('progress');
+const cover = document.getElementById('cover');
 
+// --- VALORES INICIALES ---
+progress.value = 0;
+const defaultCover = `file://${path.join(__dirname, 'default-cover.png')}`;
+cover.src = defaultCover;
 
-// Botón Play/Pause
+// --- BOTÓN PLAY/PAUSE ---
 playBtn.addEventListener('click', () => {
   if (!player.src) return; // si no hay canción cargada, no hacer nada
 
@@ -20,25 +26,49 @@ playBtn.addEventListener('click', () => {
   }
 });
 
+// --- BOTÓN STOP ---
 stopBtn.addEventListener('click', () => {
   player.pause();
   player.currentTime = 0;
   playBtn.textContent = 'Play';
+  progress.value = 0;
 });
 
-// Cuando el main envía la ruta del archivo
-ipcRenderer.on('audio-selected', (event, filePath) => {
-  // 🔹 Normalizamos la ruta (por si hay barras invertidas en Windows)
-  const normalizedPath = filePath.replace(/\\/g, '/');
+// --- ACTUALIZAR BARRA DE PROGRESO ---
+player.addEventListener('timeupdate', () => {
+  if (player.duration > 0) {
+    progress.value = (player.currentTime / player.duration) * 100;
+  }
+});
 
-  // 🔹 Asignamos correctamente el src
+// --- CONTROLAR MANUALMENTE LA POSICIÓN ---
+progress.addEventListener('input', () => {
+  if (player.duration > 0) {
+    const newTime = (progress.value / 100) * player.duration;
+    player.currentTime = newTime;
+  }
+});
+
+// --- CUANDO SE SELECCIONA UN ARCHIVO ---
+ipcRenderer.on('audio-selected', (event, data) => {
+  const { filePath, coverDataUrl } = data;
+
+  // Normalizar ruta
+  const normalizedPath = filePath.replace(/\\/g, '/');
   player.src = `file:///${normalizedPath}`;
 
-  // 🔹 Mostramos el nombre del archivo en el h1
+  // Mostrar nombre del archivo
   const nombre = path.basename(filePath);
   title.textContent = `🎵 ${nombre}`;
 
-  // 🔹 Reproducimos automáticamente
+  // Mostrar portada (si existe)
+  if (coverDataUrl) {
+    cover.src = coverDataUrl;
+  } else {
+    cover.src = defaultCover;
+  }
+
+  // Reproducir automáticamente
   player.load();
   player.play();
   playBtn.textContent = 'Pause';

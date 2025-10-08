@@ -1,33 +1,83 @@
-body{
+/* Evita scroll y usa toda la ventana */
+html, body {
     margin: 0;
-    height:100vh;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: #1e1e1e;
+    color: white;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+  }
+  
+  /* Cabecera arriba */
+  header {
+    text-align: center;
+    padding: 10px;
+  }
+  
+  /* Zona central (portada o fondo libre) */
+  main {
+    flex: 1; /* Ocupa el espacio disponible */
+    display: flex;
     align-items: center;
-    background-color: #1e1e1e;
-    color:white
-}
-
-#play{
-    margin:20px;
-    padding: 10px 20px;
-    font-size: 18px;
+    justify-content: center;
+  }
+  
+  #cover-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 80%;
+  }
+  
+  #cover {
+    max-width: 80%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  
+  /* Controles abajo */
+  footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    gap: 10px;
+    background: #252525;
+  }
+  
+  /* Línea de progreso */
+  #progress {
+    width: 90%;
+    accent-color: #4caf50;
+    cursor: pointer;
+  }
+  
+  /* Botones */
+  .controls {
+    display: flex;
+    gap: 20px;
+  }
+  
+  #play, #stop {
+    width: 80px;
+    height: 40px;
     border: none;
     border-radius: 8px;
-    cursor:pointer;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+  }
+  
+  #play {
     background: #4caf50;
-    color:white
-
-}
-
-#stop{
-    margin:20px;
-    padding: 10px 20px;
-    font-size: 18px;
-    border: none;
-    border-radius: 8px;
-    cursor:pointer;
-    background: #f44336;
-    color:white
-}
+  }
+  
+  #stop {
+    background: #e53935;
+  }
+  
